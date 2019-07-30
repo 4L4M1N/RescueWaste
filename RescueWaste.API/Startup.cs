@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using RescueWaste.API.Data;
+using RescueWaste.API.Models;
 
 namespace RescueWaste.API
 {
@@ -33,7 +34,8 @@ namespace RescueWaste.API
                     Configuration.GetConnectionString("RescueWasteDB")
                 )
             );
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddIdentity<AppUser, IdentityRole>()
+                .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<DataContext>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddCors();

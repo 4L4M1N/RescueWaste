@@ -4,7 +4,7 @@ namespace RescueWaste.API.Models
     {
         public const string AdminUsr = "Admin";
         public const string AreaManagerUsr = "AreaManager";
-        public const string GeneralUsr = "General";
+        public const string GeneralUsr = "GeneralUser";
 
     }
 }
