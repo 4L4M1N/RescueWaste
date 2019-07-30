@@ -41,5 +41,6 @@ namespace RescueWaste.API.Controllers
         public void Delete(int id)
         {
         }
+        
     }
 }

@@ -10,7 +10,7 @@ using RescueWaste.API.Data;
 namespace RescueWaste.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190729183049_AddedAppUser")]
+    [Migration("20190730081024_AddedAppUser")]
     partial class AddedAppUser
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
