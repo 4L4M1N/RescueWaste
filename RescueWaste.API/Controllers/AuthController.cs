@@ -1,6 +1,12 @@
+using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 using RescueWaste.API.DTOs;
 using RescueWaste.API.Models;
 
@@ -13,12 +19,14 @@ namespace RescueWaste.API.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly IConfiguration _config;
 
-        public AuthController(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, SignInManager<AppUser> signInManager)
+        public AuthController(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, SignInManager<AppUser> signInManager, IConfiguration config)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _signInManager = signInManager;
+            _config = config;
         }
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody]UserForRegistrationDTO userForRegistrationDTO)
@@ -57,6 +65,46 @@ namespace RescueWaste.API.Controllers
             }
             //Create User
             return Ok(createdUser);
+        }
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(UserForLoginDTO userForLoginDTO)
+        {
+            var user = await _userManager.FindByNameAsync(userForLoginDTO.UserName);
+            var role = await _userManager.GetRolesAsync(user);
+            string roleAssigned = role[0];
+            var result = await _signInManager
+                .CheckPasswordSignInAsync(user, userForLoginDTO.Password, false);
+            if(result == null)
+                return Unauthorized();
+            var claims = new[]
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.Id),
+                new Claim(ClaimTypes.Name, user.UserName),
+                new Claim(ClaimTypes.Role, roleAssigned)
+            };
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8
+                .GetBytes(_config.GetSection("AppSettings:Token").Value)); //Set Secret value
+            
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+            
+            //insert information to token
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(claims),
+                Expires = DateTime.Now.AddDays(1),
+                SigningCredentials = creds
+            };
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            
+
+            return Ok(new {
+                token = tokenHandler.WriteToken(token)
+            });
+            
         }
     }
 }
