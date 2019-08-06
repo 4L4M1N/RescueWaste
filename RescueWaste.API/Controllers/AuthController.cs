@@ -70,12 +70,14 @@ namespace RescueWaste.API.Controllers
         public async Task<IActionResult> Login(UserForLoginDTO userForLoginDTO)
         {
             var user = await _userManager.FindByNameAsync(userForLoginDTO.UserName);
+            if(user == null)
+                return Unauthorized(); 
+
+            var result = await _signInManager
+                .CheckPasswordSignInAsync(user, userForLoginDTO.Password, false); //Please use better option
+            if(result.Succeeded){
             var role = await _userManager.GetRolesAsync(user);
             string roleAssigned = role[0];
-            var result = await _signInManager
-                .CheckPasswordSignInAsync(user, userForLoginDTO.Password, false);
-            if(result == null)
-                return Unauthorized();
             var claims = new[]
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id),
@@ -104,6 +106,8 @@ namespace RescueWaste.API.Controllers
             return Ok(new {
                 token = tokenHandler.WriteToken(token)
             });
+            }
+            return Unauthorized();
             
         }
     }
