@@ -21,4 +21,12 @@ login(model: any) {
     )
   );
 }
+loggedIn() {
+  const token = localStorage.getItem('token');
+  return !!token;
+}
+logOut() {
+  localStorage.removeItem('token');
+  console.log('Log out successfully');
+}
 }
