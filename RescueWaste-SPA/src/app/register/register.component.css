@@ -2,3 +2,9 @@
     padding-left: 50px;
     padding-right: 0px;
 }
+#leftregistration {
+    background-image: url('/assets/images/image.jpeg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

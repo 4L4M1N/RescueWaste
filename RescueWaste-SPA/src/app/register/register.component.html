@@ -1,38 +1,36 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-8">
-
+    <div class="col-md-8" id="leftregistration">
     </div>
     <div class="col-md-4">
       <div class="card-body" id="registerForm">
           <h3 class="card-title text-left">Become a Rescuer</h3>
-          <form>
+          <form #registerForm="ngForm" (ngSubmit)="register()">
               <div class="form-group">
                   <label for="name"><i class="fa fa-user"></i> Full Name</label>
-                  <input type="name" class="form-control" id="name" placeholder="ABC Hossain">
+                  <input type="name" class="form-control" id="name" required required="fullname" [(ngModel)]="model.fullname" placeholder="ABC Hossain">
               </div>
   
               <div class="form-group">
                     <label for="email"><i class="fa fa-at"></i> Email address</label>
-                    <input type="email" class="form-control" id="email" placeholder="name@example.com">
+                    <input type="email" class="form-control" id="email" required name="email" [(ngModel)]="model.email" placeholder="name@example.com">
               </div>
               <div class="form-group">
-                <label>I am a</label>
-                <select class="form-control">
-                  <option value="#">General User</option>
-                  <option value="#">Area Manager</option>
-                  <option value="#">Company Representative</option>
+                <label for="usertype">I am a</label>
+                <select class="form-control" id="usertype" required name="usertype" [(ngModel)]="model.usertype">
+                  <option [value]="null" selected>Select Role</option>
+                  <option *ngFor="let role of roles" [value]="role.name">{{role.name}}</option>
                 </select>
               </div>
 
               <div class="form-group">
                   <label for="password"><i class="fa fa-at"></i> Enter Password</label>
-                  <input type="password" class="form-control" id="password">
+                  <input type="password" class="form-control"  id="password" required name="password" [(ngModel)]="model.password" >
               </div>
 
               <div class="form-group">
                   <label for="password"><i class="fa fa-at"></i> Confirm Password</label>
-                  <input type="password" class="form-control" id="password">
+                  <input type="password" class="form-control" id="repassword" required name="repassword" [(ngModel)]="model.repassword" >
               </div>
 
               <button class="btn btn-success">Signup</button>

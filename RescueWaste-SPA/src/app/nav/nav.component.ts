@@ -11,7 +11,7 @@ export class NavComponent implements OnInit {
 
   model: any = {};  // Store username and password as object
   constructor(private authService: AuthService,
-    private router: Router) { } // register /inject authservice
+              private router: Router) { } // register /inject authservice
 
   ngOnInit() {
   }
