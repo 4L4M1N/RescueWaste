@@ -1,10 +1,31 @@
-#registerForm {
+/* #registerFormRight {
     padding-left: 50px;
     padding-right: 0px;
-}
-#leftregistration {
+} */
+/* #leftregistration {
     background-image: url('/assets/images/image.jpeg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+} */
+/* #registrationComponent {
+    background-color:green;
+} */
+:host {
+    background-color: #d4f8d4;
+    display: block;
+    height: 100%;
+  }
+.form-control {
+    border-radius: 10px;
+}
+#icon-container {
+  display: inline-flex; /* make element size relative to content */
+  align-items: center; /* vertical alignment of items */
+  line-height: 40px; /* vertically size by height, line-height or padding */
+  padding-top: 10px;/* horizontal with padding-l/r */
+
+}
+#text {
+    padding-left: 10px;
 }

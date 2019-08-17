@@ -1,8 +1,8 @@
 import {Routes} from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
-import { GUserDashboardComponent } from './gUserDashboard/gUserDashboard.component';
 import { AuthGuard } from './_guards/auth.guard';
+import { RescuerComponent } from './rescuer/rescuer.component';
 
 export const appRoutes: Routes = [
     { path: '', component: HomeComponent},
@@ -11,7 +11,7 @@ export const appRoutes: Routes = [
         runGuardsAndResolvers: 'always',
         canActivate: [AuthGuard],
         children: [
-            { path: 'gUserDashboard', component: GUserDashboardComponent, canActivate: [AuthGuard]},
+            { path: 'rescuer', component: RescuerComponent, canActivate: [AuthGuard]},
         ]
     },
     { path: 'register', component: RegisterComponent},

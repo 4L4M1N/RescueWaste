@@ -14,13 +14,14 @@ export class RegisterComponent implements OnInit {
   roles: any;
   constructor(private authService: AuthService, private router: Router, private http: HttpClient) {
     if (this.authService.loggedIn()) {
-      this.router.navigate(['/gUserDashboard']);
+      this.router.navigate(['/rescuer']);
     }
    }
 
   ngOnInit() {
-    this.getRoles();
+    // this.getRoles();
   }
+  // **Get Roles From API
   getRoles() {
     this.http.get('http://localhost:5000/api/role').subscribe(response => {
       this.roles = response;
@@ -29,6 +30,8 @@ export class RegisterComponent implements OnInit {
       console.log(error);
     });
   }
+  // **Role method end
+
   register() {
     console.log(this.model);
   }

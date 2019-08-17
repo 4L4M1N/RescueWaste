@@ -21,7 +21,7 @@ export class NavComponent implements OnInit {
     }, error => {
       console.log('Unable to login');
     }, () => {
-      this.router.navigate(['/gUserDashboard']);
+      this.router.navigate(['/rescuer']);
     });
   }
   loggedIn() {
