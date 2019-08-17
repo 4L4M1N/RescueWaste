@@ -55,10 +55,10 @@ namespace RescueWaste.API.Controllers
             var createdUser = await _userManager.CreateAsync(userToCreate, userForRegistrationDTO.Password);
             if(createdUser.Succeeded)
             {
-                if(userForRegistrationDTO.Role == "GeneralUser"){
+                if(userForRegistrationDTO.Role == "Rescuer"){
                 await _userManager.AddToRoleAsync(userToCreate,Role.GeneralUsr);
                 }
-                if(userForRegistrationDTO.Role == "AreaManager"){
+                if(userForRegistrationDTO.Role == "Manager"){
                 await _userManager.AddToRoleAsync(userToCreate,Role.AreaManagerUsr);
                 }
                 
