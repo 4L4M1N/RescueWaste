@@ -6,8 +6,12 @@ namespace RescueWaste.API.DTOs
     {
         //TODO: Use Regular Expresison to validate.
         [Required]
+        public string Name { get; set; }
+
+        [Required]
         public string  UserName { get; set; }
         [Required]
+        [EmailAddress(ErrorMessage = "Email is not valid")]
         //TODO: Email verification 
         public string Email { get; set; }
         [Required]
