@@ -17,14 +17,20 @@ login(model: any) {
         localStorage.setItem('token', user.token);
       }
     }
-
     )
   );
 }
+  // register method
+  register(model: any) {
+    return this.http.post(this.baseurl + 'register', model);
+  }
+
+  // loggedin method
 loggedIn() {
   const token = localStorage.getItem('token');
   return !!token;
 }
+  // logout method
 logOut() {
   localStorage.removeItem('token');
   console.log('Log out successfully');

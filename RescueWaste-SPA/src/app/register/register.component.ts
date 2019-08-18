@@ -10,7 +10,10 @@ import { HttpClient } from '@angular/common/http';
 })
 export class RegisterComponent implements OnInit {
 
-  model: any = {} ;
+  model: any = {
+    role : 'Rescuer'
+  };
+
   roles: any;
   constructor(private authService: AuthService, private router: Router, private http: HttpClient) {
     if (this.authService.loggedIn()) {
@@ -33,7 +36,12 @@ export class RegisterComponent implements OnInit {
   // **Role method end
 
   register() {
-    console.log(this.model);
+    this.authService.register(this.model).subscribe(() => {
+      console.log('Registration Successful');
+    }, error => {
+      console.log(error);
+    });
+    // console.log(this.model);
   }
   cancel() {
     console.log('Cancel worked');
