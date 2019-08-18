@@ -47,7 +47,8 @@ namespace RescueWaste.API.Controllers
             var userToCreate = new AppUser
             {
                 UserName = userForRegistrationDTO.UserName,
-                Email = userForRegistrationDTO.UserName
+                Email = userForRegistrationDTO.UserName,
+                Name = userForRegistrationDTO.Name
                 
             };
             if(await _userManager.FindByNameAsync(userForRegistrationDTO.UserName) != null)
@@ -61,10 +62,10 @@ namespace RescueWaste.API.Controllers
                 if(userForRegistrationDTO.Role == "Manager"){
                 await _userManager.AddToRoleAsync(userToCreate,Role.AreaManagerUsr);
                 }
-                
+                return Ok(createdUser);
             }
             //Create User
-            return Ok(createdUser);
+            return BadRequest(createdUser.Errors);
         }
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserForLoginDTO userForLoginDTO)
