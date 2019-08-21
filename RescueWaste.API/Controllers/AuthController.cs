@@ -70,6 +70,7 @@ namespace RescueWaste.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserForLoginDTO userForLoginDTO)
         {
+            // throw new Exception("noooooo");
             var user = await _userManager.FindByNameAsync(userForLoginDTO.UserName);
             if(user == null)
                 return Unauthorized(); 

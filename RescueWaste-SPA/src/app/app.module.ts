@@ -14,6 +14,7 @@ import { HomeComponent } from './home/home.component';
 import { appRoutes } from './routes';
 import { AuthGuard } from './_guards/auth.guard';
 import { RescuerComponent } from './rescuer/rescuer.component';
+import { ErrorInterceptor, ErrorInterceptorProvider } from './services/error.interceptor';
 
 
 
@@ -36,7 +37,8 @@ import { RescuerComponent } from './rescuer/rescuer.component';
    ],
    providers: [
       AuthService,
-      AuthGuard
+      AuthGuard,
+      ErrorInterceptorProvider
    ],
    bootstrap: [
       AppComponent

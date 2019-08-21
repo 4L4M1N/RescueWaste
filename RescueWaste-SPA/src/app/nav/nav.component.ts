@@ -19,7 +19,7 @@ export class NavComponent implements OnInit {
     this.authService.login(this.model).subscribe(next => { // pass model to authService.login();
       console.log('Successfully login');
     }, error => {
-      console.log('Unable to login');
+      console.log(error);
     }, () => {
       this.router.navigate(['/rescuer']);
     });
