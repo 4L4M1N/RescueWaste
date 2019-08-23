@@ -48,9 +48,12 @@ namespace RescueWaste.API.Controllers
             {
                 UserName = userForRegistrationDTO.UserName,
                 Email = userForRegistrationDTO.UserName,
-                Name = userForRegistrationDTO.Name
                 
             };
+            // if(!ModelState.IsValid)
+            // {
+            //     return BadRequest(userToCreate);
+            // }
             if(await _userManager.FindByNameAsync(userForRegistrationDTO.UserName) != null)
                 return BadRequest("User name already exists!");
             var createdUser = await _userManager.CreateAsync(userToCreate, userForRegistrationDTO.Password);

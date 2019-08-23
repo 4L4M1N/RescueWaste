@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using RescueWaste.API.Data;
 
 namespace RescueWaste.API.Controllers
 {
@@ -11,10 +13,16 @@ namespace RescueWaste.API.Controllers
     public class ValuesController : ControllerBase
     {
         // GET api/values
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        private readonly DataContext _context;
+        public ValuesController(DataContext context)
         {
-            return new string[] { "value1", "value2" };
+            _context = context;
+        }
+        [HttpGet]
+        public async Task<IActionResult>GetValues()
+        {
+            var values = await _context.AppUsers.ToListAsync();
+            return Ok(values);
         }
 
         // GET api/values/5
