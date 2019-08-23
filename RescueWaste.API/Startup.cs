@@ -45,8 +45,6 @@ namespace RescueWaste.API
             .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
             .ConfigureApiBehaviorOptions(options =>{
                 options.SuppressConsumesConstraintForFormFileParameters = true;
-                options.SuppressInferBindingSourcesForParameters = true;
-               // options.SuppressModelStateInvalidFilter = true;
                 options.SuppressMapClientErrors = true;
                 options.SuppressUseValidationProblemDetailsForInvalidModelStateResponses = true;
             });
