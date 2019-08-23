@@ -4,19 +4,19 @@
   <a class="navbar-brand" [routerLink]="['/home']">Rescue Waste</a>
 
     <ul *ngIf="loggedIn()" class="navbar-nav mr-auto">
-      <li class="nav-item" routerLinkActive="router-link-active">
+      <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['/rescuer']">Dashboard</a>
       </li>
   
       <li class="nav-item">
-        <a class="nav-link" href="#">How it Works</a>
+        <a class="nav-link" href="#">Message</a>
       </li>
 
     </ul>
 
     <div *ngIf="loggedIn()" class="dropdown" dropdown>
       <a class="dropdown-toggle text-light" dropdownToggle>
-        Welcome
+        Welcome {{authService.decodedToken?.unique_name | titlecase}}
       </a>
     
       <div class="dropdown-menu mt-3" *dropdownMenu>

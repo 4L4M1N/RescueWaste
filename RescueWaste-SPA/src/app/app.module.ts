@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser'; // For Title Service
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -15,6 +15,7 @@ import { appRoutes } from './routes';
 import { AuthGuard } from './_guards/auth.guard';
 import { RescuerComponent } from './rescuer/rescuer.component';
 import { ErrorInterceptor, ErrorInterceptorProvider } from './services/error.interceptor';
+import { AlertifyService } from './services/alertify.service';
 
 
 
@@ -38,7 +39,9 @@ import { ErrorInterceptor, ErrorInterceptorProvider } from './services/error.int
    providers: [
       AuthService,
       AuthGuard,
-      ErrorInterceptorProvider
+      ErrorInterceptorProvider,
+      AlertifyService,
+      Title // For Title Service
    ],
    bootstrap: [
       AppComponent
