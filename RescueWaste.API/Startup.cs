@@ -41,7 +41,15 @@ namespace RescueWaste.API
             services.AddIdentity<AppUser, IdentityRole>()
                 .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<DataContext>();
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc()
+            .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+            .ConfigureApiBehaviorOptions(options =>{
+                options.SuppressConsumesConstraintForFormFileParameters = true;
+                options.SuppressInferBindingSourcesForParameters = true;
+               // options.SuppressModelStateInvalidFilter = true;
+                options.SuppressMapClientErrors = true;
+                options.SuppressUseValidationProblemDetailsForInvalidModelStateResponses = true;
+            });
             services.AddCors();
         }
 
@@ -58,8 +66,9 @@ namespace RescueWaste.API
                     builder.Run(async context => {
                         //Save error code to context
                         context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                        
                         //store errors 
-                        var error = context.Features.Get<ExceptionHandlerFeature>();
+                        var error = context.Features.Get<IExceptionHandlerFeature>();
                         if(error!=null)
                         {
                             //Save message to context
