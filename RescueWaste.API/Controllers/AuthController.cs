@@ -48,6 +48,7 @@ namespace RescueWaste.API.Controllers
             {
                 UserName = userForRegistrationDTO.UserName,
                 Email = userForRegistrationDTO.UserName,
+                Name = userForRegistrationDTO.FullName
                 
             };
             // if(!ModelState.IsValid)
