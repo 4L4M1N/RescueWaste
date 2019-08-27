@@ -16,6 +16,9 @@ import { AuthGuard } from './_guards/auth.guard';
 import { RescuerComponent } from './rescuer/rescuer.component';
 import { ErrorInterceptor, ErrorInterceptorProvider } from './services/error.interceptor';
 import { AlertifyService } from './services/alertify.service';
+import { DashboardComponent } from './rescuer/dashboard/dashboard.component';
+import { LeftNavComponent } from './rescuer/left-nav/left-nav.component';
+import { MarketplaceComponent } from './rescuer/marketplace/marketplace.component';
 
 
 
@@ -27,7 +30,10 @@ import { AlertifyService } from './services/alertify.service';
       NavComponent,
       RegisterComponent,
       HomeComponent,
-      RescuerComponent
+      RescuerComponent,
+      DashboardComponent,
+      LeftNavComponent,
+      MarketplaceComponent
    ],
    imports: [
       BrowserModule,
