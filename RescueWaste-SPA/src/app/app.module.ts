@@ -19,6 +19,7 @@ import { AlertifyService } from './services/alertify.service';
 import { DashboardComponent } from './rescuer/dashboard/dashboard.component';
 import { LeftNavComponent } from './rescuer/left-nav/left-nav.component';
 import { MarketplaceComponent } from './rescuer/marketplace/marketplace.component';
+import { ManagerComponent } from './manager/manager.component';
 
 
 
@@ -33,7 +34,8 @@ import { MarketplaceComponent } from './rescuer/marketplace/marketplace.componen
       RescuerComponent,
       DashboardComponent,
       LeftNavComponent,
-      MarketplaceComponent
+      MarketplaceComponent,
+      ManagerComponent
    ],
    imports: [
       BrowserModule,
@@ -47,7 +49,7 @@ import { MarketplaceComponent } from './rescuer/marketplace/marketplace.componen
       AuthGuard,
       ErrorInterceptorProvider,
       AlertifyService,
-      Title // For Title Service
+      Title//ForTitleService
    ],
    bootstrap: [
       AppComponent

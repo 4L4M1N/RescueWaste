@@ -5,6 +5,7 @@ import { AuthGuard } from './_guards/auth.guard';
 import { RescuerComponent } from './rescuer/rescuer.component';
 import { DashboardComponent } from './rescuer/dashboard/dashboard.component';
 import { MarketplaceComponent } from './rescuer/marketplace/marketplace.component';
+import { ManagerComponent } from './manager/manager.component';
 
 export const appRoutes: Routes = [
     { path: '', component: HomeComponent},
@@ -20,6 +21,6 @@ export const appRoutes: Routes = [
         ]
     },
     { path: 'register', component: RegisterComponent},
-
+    { path: 'manager', component: ManagerComponent, canActivate: [AuthGuard], data: {role: 'Manager'}},
     { path: '**', redirectTo: '', pathMatch: 'full'},
 ];

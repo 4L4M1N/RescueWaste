@@ -44,4 +44,12 @@ logOut() {
   localStorage.removeItem('token');
   console.log('Log out successfully');
 }
+  roleMatch(allowedRole): boolean {
+  let isMatch = false;
+  const userRole = this.decodedToken.role;
+  if (userRole === allowedRole) {
+    isMatch = true;
+  }
+  return isMatch;
+}
 }
