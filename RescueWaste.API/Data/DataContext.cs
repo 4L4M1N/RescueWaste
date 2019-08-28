@@ -10,6 +10,8 @@ namespace RescueWaste.API.Data
         public DataContext(DbContextOptions<DataContext> options) : base (options){ }
         public DbSet<Test> Tests {get; set;}
         public DbSet<AppUser> AppUsers {get; set;}
+        public DbSet<PromoCode> PromoCodes { get; set; }
+        public DbSet<Merchant> Merchants { get; set;}
         
 
 
