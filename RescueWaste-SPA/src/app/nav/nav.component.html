@@ -5,7 +5,8 @@
 
     <ul *ngIf="loggedIn()" class="navbar-nav mr-auto">
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/rescuer']">Dashboard</a>
+        <a class="nav-link" *ngIf="role('Rescuer')" [routerLink]="['/rescuer/dashboard']">Dashboard</a>
+        <a class="nav-link" *ngIf="role('Manager')" [routerLink]="['/manager/manager-dashboard']">Dashboard</a>
       </li>
   
       <li class="nav-item">

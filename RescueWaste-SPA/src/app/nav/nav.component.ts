@@ -23,7 +23,11 @@ export class NavComponent implements OnInit {
     }, error => {
       console.log(error);
     }, () => {
-      this.router.navigate(['/rescuer']);
+      if(this.authService.roleMatch('Rescuer')) {
+        this.router.navigate(['/rescuer/dashboard']);
+      } else if (this.authService.roleMatch('Manager')) {
+        this.router.navigate(['/manager/dashboard']);
+      }
     });
   }
   loggedIn() {
@@ -38,6 +42,9 @@ export class NavComponent implements OnInit {
     this.authService.logOut();
     this.alertify.message('Loggedout successfully');
     this.router.navigate(['/home']);
+  }
+  role(roleToCheck) {
+    return this.authService.roleMatch(roleToCheck);
   }
 
 }
