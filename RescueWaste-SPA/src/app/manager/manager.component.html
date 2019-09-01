@@ -1,3 +1,16 @@
-<p>
-  manager works!
-</p>
+<div class="container">
+  <div class="row pt-4">
+    <div class="col-md-3">
+      <div class="card-body p-2 mb-5 shadow bg-white rounded">
+          <app-manager-nav></app-manager-nav>
+      </div>
+        
+    </div>
+    
+    <div class="col-md-9">
+      <div class="card-body shadow p-3 mb-5 bg-white rounded">
+          <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

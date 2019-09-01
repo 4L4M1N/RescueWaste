@@ -20,6 +20,9 @@ import { DashboardComponent } from './rescuer/dashboard/dashboard.component';
 import { LeftNavComponent } from './rescuer/left-nav/left-nav.component';
 import { MarketplaceComponent } from './rescuer/marketplace/marketplace.component';
 import { ManagerComponent } from './manager/manager.component';
+import { ManagerDashboardComponent } from './manager/manager-dashboard/manager-dashboard.component';
+import { ManagerNavComponent } from './manager/manager-nav/manager-nav.component';
+import { AddCouponComponent } from './manager/add-coupon/add-coupon.component';
 
 
 
@@ -35,7 +38,10 @@ import { ManagerComponent } from './manager/manager.component';
       DashboardComponent,
       LeftNavComponent,
       MarketplaceComponent,
-      ManagerComponent
+      ManagerComponent,
+      ManagerDashboardComponent,
+      ManagerNavComponent,
+      AddCouponComponent
    ],
    imports: [
       BrowserModule,
@@ -49,7 +55,7 @@ import { ManagerComponent } from './manager/manager.component';
       AuthGuard,
       ErrorInterceptorProvider,
       AlertifyService,
-      Title//ForTitleService
+      Title// ForTitleService
    ],
    bootstrap: [
       AppComponent
