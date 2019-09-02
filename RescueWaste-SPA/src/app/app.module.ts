@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BsDropdownModule } from 'ngx-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { RouterModule } from '@angular/router';
 
 
@@ -48,6 +50,8 @@ import { AddCouponComponent } from './manager/add-coupon/add-coupon.component';
       HttpClientModule,
       FormsModule,
       BsDropdownModule.forRoot(),
+      BrowserAnimationsModule,
+      BsDatepickerModule.forRoot(),
       RouterModule.forRoot(appRoutes)
    ],
    providers: [

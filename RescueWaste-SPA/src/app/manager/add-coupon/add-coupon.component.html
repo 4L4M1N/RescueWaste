@@ -1,3 +1,30 @@
-<p>
-  add-coupon works!
-</p>
+<!-- <p *ngFor="let merchant of merchants">{{merchant.name}}</p> -->
+<div class="row">
+    <div class="col-md-6">
+    <form #addCoupon="ngForm" (ngSubmit)="addCupon()">
+        <div class="form-group">
+            <label for="couponname"><i class="fa fa-user"></i> Coupon Name / Value</label>
+            <input type="text" class="form-control" id="couponname" required name="couponname" [(ngModel)]="model.couponname" placeholder="amin">
+        </div>
+         <!-- TODO: Check var name -->
+        <div class="form-group">
+            <label for="name">Coupon Belongs to</label>
+            <select [(ngModel)]="model.merchantname" class="form-control" id="merchantname" required name="merchantname" [(ngModel)]="model.merchantname">
+                <option [value]="null" selected>Select Merchant</option>
+                <option *ngFor="let merchant of merchants">{{merchant.name}}</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="expiredDate"> Coupon Expire Date</label>
+            <input type="text"
+                placeholder="Select Date"
+                class="form-control"
+                placement="right"
+                bsDatepicker id="expireDate" required name="expireDate" [(ngModel)]="model.expireDate">
+        </div>
+
+        <button class="btn btn-primary">Sign up</button>
+    </form>
+    </div>
+</div>
