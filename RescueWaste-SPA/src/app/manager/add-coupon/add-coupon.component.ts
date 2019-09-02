@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 
 @Component({
   selector: 'app-add-coupon',
@@ -8,9 +9,12 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AddCouponComponent implements OnInit {
 
+  datePickerConfig: Partial<BsDatepickerConfig>;
   model: any = {};
   merchants: any;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.datePickerConfig = Object.assign({}, { minDate: new Date(Date.now())});
+   }
 
   ngOnInit() {
     this.getMerchants();
