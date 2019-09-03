@@ -16,6 +16,6 @@ namespace RescueWaste.API.Models
         public Merchant Merchant { get; set; }
         
         [Required]
-        public byte MerchantId { get; set; }
+        public byte MerchantID { get; set; }
     }
 }
