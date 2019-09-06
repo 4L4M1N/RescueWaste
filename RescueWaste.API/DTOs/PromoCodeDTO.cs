@@ -7,6 +7,7 @@ namespace RescueWaste.API.DTOs
 {
     public class PromoCodeDTO
     {
+        [Required]
         public string  Name { get; set; }
         [Required]
         public DateTime ExpireDate { get; set; }

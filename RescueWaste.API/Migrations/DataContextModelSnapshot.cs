@@ -204,6 +204,9 @@ namespace RescueWaste.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("AreaManagerID")
+                        .IsRequired();
+
                     b.Property<DateTime>("ExpireDate");
 
                     b.Property<bool>("IsActive");
@@ -214,6 +217,8 @@ namespace RescueWaste.API.Migrations
                         .IsRequired();
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AreaManagerID");
 
                     b.HasIndex("MerchantID");
 
@@ -289,6 +294,11 @@ namespace RescueWaste.API.Migrations
 
             modelBuilder.Entity("RescueWaste.API.Models.PromoCode", b =>
                 {
+                    b.HasOne("RescueWaste.API.Models.AppUser", "AreaManager")
+                        .WithMany()
+                        .HasForeignKey("AreaManagerID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("RescueWaste.API.Models.Merchant", "Merchant")
                         .WithMany()
                         .HasForeignKey("MerchantID")

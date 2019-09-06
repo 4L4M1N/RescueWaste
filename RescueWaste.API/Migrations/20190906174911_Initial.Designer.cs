@@ -10,8 +10,8 @@ using RescueWaste.API.Data;
 namespace RescueWaste.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190828021625_AddPromocode")]
-    partial class AddPromocode
+    [Migration("20190906174911_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -206,18 +206,23 @@ namespace RescueWaste.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("AreaManagerID")
+                        .IsRequired();
+
                     b.Property<DateTime>("ExpireDate");
 
                     b.Property<bool>("IsActive");
 
-                    b.Property<byte>("MerchantId");
+                    b.Property<byte>("MerchantID");
 
                     b.Property<string>("Name")
                         .IsRequired();
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MerchantId");
+                    b.HasIndex("AreaManagerID");
+
+                    b.HasIndex("MerchantID");
 
                     b.ToTable("PromoCodes");
                 });
@@ -291,9 +296,14 @@ namespace RescueWaste.API.Migrations
 
             modelBuilder.Entity("RescueWaste.API.Models.PromoCode", b =>
                 {
+                    b.HasOne("RescueWaste.API.Models.AppUser", "AreaManager")
+                        .WithMany()
+                        .HasForeignKey("AreaManagerID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("RescueWaste.API.Models.Merchant", "Merchant")
                         .WithMany()
-                        .HasForeignKey("MerchantId")
+                        .HasForeignKey("MerchantID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
