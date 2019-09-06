@@ -3,11 +3,19 @@
     <div class="col-md-3">
       <div class="card-body p-2 mb-5 shadow bg-white rounded">
 
-        <div class="profile">
-          <img src="assets/images/avatar.png" width="120px;">
+        <div class="profile-badge">
+        <div class="media border p-3 shadow-sm p-3 bg-white rounded">
+              <img src="assets/images/avatar.png" width="50px;">
+              <div class="media-body">
+                <p>{{authService.decodedToken?.unique_name | titlecase}}</p>
+                <p class="font-italic">Area {{authService.decodedToken?.role}}</p>
+              </div>
+           
+        </div>
         </div>
 
-        <div class="pt-4">
+
+        <div class="left-navbar">
             <app-manager-nav></app-manager-nav>
         </div>
           

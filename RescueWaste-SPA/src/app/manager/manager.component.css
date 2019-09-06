@@ -1,11 +1,24 @@
-.profile img{
+.media img {
+   
     border-radius: 50%;
-    display: block;
+    /* display: block;
     margin-left: auto;
     margin-right: auto;
+    padding-left: 10px; */
     
 }
-.profile {
-    align-items: center;
-    
+
+.media .media-body {
+    padding-left: 10px;
+    padding-top: 15px;
+    line-height: 0px;
+}
+.media p {
+    font-size: 15px;
+}
+.left-navbar {
+    padding-top: 25px;
+}
+.media {
+   border-radius: 10px;
 }

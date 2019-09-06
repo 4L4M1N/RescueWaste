@@ -23,7 +23,7 @@ export class NavComponent implements OnInit {
     }, error => {
       console.log(error);
     }, () => {
-      if(this.authService.roleMatch('Rescuer')) {
+      if (this.authService.roleMatch('Rescuer')) {
         this.router.navigate(['/rescuer/dashboard']);
       } else if (this.authService.roleMatch('Manager')) {
         this.router.navigate(['/manager/dashboard']);
