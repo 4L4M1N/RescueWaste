@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
-import { CouponService } from 'src/app/services/coupon.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { PromocodeService } from 'src/app/services/promocode.service';
 
 @Component({
   selector: 'app-add-coupon',
@@ -14,7 +15,7 @@ export class AddCouponComponent implements OnInit {
   model: any = {merchantId: -1};
   selected: any;
   merchants: any;
-  constructor(private http: HttpClient, private couponService: CouponService) {
+  constructor(private http: HttpClient, private promocodeService: PromocodeService, private authService: AuthService) {
     this.datePickerConfig = Object.assign({}, { minDate: new Date(Date.now())});
    }
 
@@ -23,7 +24,7 @@ export class AddCouponComponent implements OnInit {
   }
 
   getMerchants() {
-    this.http.get('http://localhost:5000/api/coupon').subscribe(response => {
+    this.http.get('http://localhost:5000/api/promocode').subscribe(response => {
       this.merchants = response;
       console.log(this.merchants);
     }, error => {
@@ -32,8 +33,9 @@ export class AddCouponComponent implements OnInit {
   }
 
   addCupon() {
-    this.couponService.create(this.model).subscribe(() => {
-      console.log('coupon added');
+    this.model.areaManagerId = this.authService.decodedToken.nameid;
+    this.promocodeService.create(this.model).subscribe(() => {
+      console.log('Promocode added');
     }, error => {
       console.log(error);
     });
