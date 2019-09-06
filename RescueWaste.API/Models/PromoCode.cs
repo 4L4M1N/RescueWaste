@@ -13,6 +13,11 @@ namespace RescueWaste.API.Models
         [Required]
         public DateTime ExpireDate { get; set; }
         public bool IsActive { get; set; }
+
+        public AppUser AreaManager { get; set; }
+
+        [Required]
+        public string AreaManagerID { get; set; }
         public Merchant Merchant { get; set; }
         
         [Required]
