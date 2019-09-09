@@ -1,16 +1,16 @@
 <!-- <p *ngFor="let merchant of merchants">{{merchant.name}}</p> -->
 <div class="row">
     <div class="col-md-6">
-    <form #addCoupon="ngForm" (ngSubmit)="addCupon()">
+    <form [formGroup]="couponForm" (ngSubmit)="addCupon()">
 
         <div class="form-group">
             <label for="name"><i class="fa fa-user"></i> Coupon Name / Value</label>
-            <input type="text" class="form-control" id="name" required name="name" [(ngModel)]="model.name" placeholder="amin">
+            <input type="text" class="form-control" id="name" formControlName="name" placeholder="amin">
         </div>
          <!-- TODO: Check var name -->
          <div class="form-group">
                 <label for="name">Coupon Belongs to</label>
-                <select class="form-control" required name="merchantname" [(ngModel)]="model.merchantId">
+                <select class="form-control" formControlName="merchantId">
                     <option [value]="-1" disabled selected>Select Role</option>
                     <option *ngFor="let merchant of merchants" [ngValue]="merchant.id" selected="merchant[0]">{{merchant.name}}</option>
                 </select>
@@ -26,9 +26,9 @@
                 class="form-control"
                 placement="right"
                 [bsConfig]="datePickerConfig"
-                bsDatepicker id="expireDate" required name="expireDate" [(ngModel)]="model.expireDate" readonly>
+                bsDatepicker id="expireDate" formControlName="expiredDate" readonly>
         </div>
-
+        <input type="file" #file formControlName="file" (change)="uploadFile(file.files)">
         <button class="btn btn-primary">Add Coupon</button>
     </form>
     </div>
