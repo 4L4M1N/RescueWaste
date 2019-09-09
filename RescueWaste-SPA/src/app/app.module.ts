@@ -1,7 +1,7 @@
 import { BrowserModule, Title } from '@angular/platform-browser'; // For Title Service
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BsDropdownModule } from 'ngx-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
@@ -25,6 +25,7 @@ import { ManagerComponent } from './manager/manager.component';
 import { ManagerDashboardComponent } from './manager/manager-dashboard/manager-dashboard.component';
 import { ManagerNavComponent } from './manager/manager-nav/manager-nav.component';
 import { AddCouponComponent } from './manager/add-coupon/add-coupon.component';
+import { FileUploadModule } from 'ng2-file-upload';
 
 
 
@@ -52,7 +53,9 @@ import { AddCouponComponent } from './manager/add-coupon/add-coupon.component';
       BsDropdownModule.forRoot(),
       BrowserAnimationsModule,
       BsDatepickerModule.forRoot(),
-      RouterModule.forRoot(appRoutes)
+      RouterModule.forRoot(appRoutes),
+      FileUploadModule,
+      ReactiveFormsModule
    ],
    providers: [
       AuthService,
