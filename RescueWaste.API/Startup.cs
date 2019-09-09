@@ -42,6 +42,9 @@ namespace RescueWaste.API
                 .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<DataContext>();
             services.AddMvc()
+             .AddJsonOptions(
+        options => options.SerializerSettings.ReferenceLoopHandling =            
+        Newtonsoft.Json.ReferenceLoopHandling.Ignore)
             .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
             .ConfigureApiBehaviorOptions(options =>{
                 options.SuppressConsumesConstraintForFormFileParameters = true;
@@ -49,6 +52,7 @@ namespace RescueWaste.API
                 options.SuppressUseValidationProblemDetailsForInvalidModelStateResponses = true;
             });
             services.AddCors();
+            services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
