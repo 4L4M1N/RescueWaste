@@ -10,8 +10,11 @@ namespace RescueWaste.API.Models
         [Required]
         public string  Name { get; set; }
         
-        [Required]
+      
         public DateTime ExpireDate { get; set; }
+
+        
+        public double Discount { get; set; }
         public bool IsActive { get; set; }
 
         public AppUser AreaManager { get; set; }
@@ -22,5 +25,8 @@ namespace RescueWaste.API.Models
         
         [Required]
         public byte MerchantID { get; set; }
+
+        public PromocodePhoto PromocodePhoto { get; set; }
+ 
     }
 }

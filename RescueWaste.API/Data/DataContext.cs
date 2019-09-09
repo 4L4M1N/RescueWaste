@@ -12,6 +12,7 @@ namespace RescueWaste.API.Data
         public DbSet<AppUser> AppUsers {get; set;}
         public DbSet<PromoCode> PromoCodes { get; set; }
         public DbSet<Merchant> Merchants { get; set;}
+        public DbSet<PromocodePhoto> PromocodePhotos { get; set; }
         
 
 

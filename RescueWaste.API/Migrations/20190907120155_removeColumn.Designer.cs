@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RescueWaste.API.Data;
 
 namespace RescueWaste.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20190907120155_removeColumn")]
+    partial class removeColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -227,26 +229,6 @@ namespace RescueWaste.API.Migrations
                     b.ToTable("PromoCodes");
                 });
 
-            modelBuilder.Entity("RescueWaste.API.Models.PromocodePhoto", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("PromoCodeId");
-
-                    b.Property<string>("PublicId");
-
-                    b.Property<string>("Url");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PromoCodeId")
-                        .IsUnique();
-
-                    b.ToTable("PromocodePhotos");
-                });
-
             modelBuilder.Entity("RescueWaste.API.Models.Test", b =>
                 {
                     b.Property<int>("Id")
@@ -324,14 +306,6 @@ namespace RescueWaste.API.Migrations
                     b.HasOne("RescueWaste.API.Models.Merchant", "Merchant")
                         .WithMany()
                         .HasForeignKey("MerchantID")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("RescueWaste.API.Models.PromocodePhoto", b =>
-                {
-                    b.HasOne("RescueWaste.API.Models.PromoCode", "PromoCode")
-                        .WithOne("PromocodePhoto")
-                        .HasForeignKey("RescueWaste.API.Models.PromocodePhoto", "PromoCodeId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

@@ -4,6 +4,6 @@ namespace RescueWaste.API.Models
     {
         public int Id { get; set; }
         public string Url { get; set; }
-        public PhotoType Type { get; set; } 
+        
     }
 }
