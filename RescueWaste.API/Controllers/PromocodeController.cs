@@ -46,9 +46,11 @@ namespace RescueWaste.API.Controllers
             _cloudinary = new Cloudinary(acc);
         }
 
+
+
         [AllowAnonymous]
-        [HttpGet]
-        public ActionResult GetMerchants()
+        [HttpGet("merchants")]
+        public ActionResult Merchants()
         {
             var merchants = _context.Merchants.ToList();
             return Ok(merchants);
