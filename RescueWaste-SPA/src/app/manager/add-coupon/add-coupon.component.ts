@@ -18,6 +18,8 @@ export class AddCouponComponent implements OnInit {
   selected: any;
   file: any;
   merchants: any;
+  public imagePath;
+  imgURL: any;
   couponForm: FormGroup;
   constructor(private http: HttpClient, private promocodeService: PromocodeService, private authService: AuthService) {
     this.datePickerConfig = Object.assign({}, { minDate: new Date(Date.now())});
@@ -30,14 +32,14 @@ export class AddCouponComponent implements OnInit {
       merchantId: new FormControl(),
       expiredDate: new FormControl(),
       file: new FormControl(),
-      areaManagerId: new FormControl()
+      areaManagerId: new FormControl(-1)
     });
 
 
 
   }
   getMerchants() {
-    this.http.get('http://localhost:5000/api/promocode').subscribe(response => {
+    this.http.get('http://localhost:5000/api/promocode/merchants').subscribe(response => {
       this.merchants = response;
       console.log(this.merchants);
     }, error => {
@@ -49,6 +51,12 @@ export class AddCouponComponent implements OnInit {
       return;
     }
     this.file = <File>files[0];
+    var reader = new FileReader();
+    this.imagePath = files;
+    reader.readAsDataURL(files[0]);
+    reader.onload = (_event) => {
+      this.imgURL = reader.result;
+    }
   }
 
   addCupon() {

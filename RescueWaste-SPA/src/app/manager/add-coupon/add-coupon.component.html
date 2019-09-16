@@ -11,8 +11,8 @@
          <div class="form-group">
                 <label for="name">Coupon Belongs to</label>
                 <select class="form-control" formControlName="merchantId">
-                    <option [value]="-1" disabled selected>Select Role</option>
-                    <option *ngFor="let merchant of merchants" [ngValue]="merchant.id" selected="merchant[0]">{{merchant.name}}</option>
+                    <option [ngValue]="null" disabled>Choose Merchant</option>
+                    <option *ngFor="let merchant of merchants" [ngValue]="merchant.id" selected="merchant[1]">{{merchant.name}}</option>
                 </select>
 
 
@@ -28,8 +28,20 @@
                 [bsConfig]="datePickerConfig"
                 bsDatepicker id="expireDate" formControlName="expiredDate" readonly>
         </div>
-        <input type="file" #file formControlName="file" (change)="uploadFile(file.files)">
-        <button class="btn btn-primary">Add Coupon</button>
+        <div class="custom-file">
+        <input type="file" class="custom-file-input" #file formControlName="file" (change)="uploadFile(file.files)">
+        <label class="custom-file-label" for="customFile">Choose file</label>
+        
+        <div class="addCoupon">
+            <button class="btn btn-primary">Add Coupon</button>
+        </div>
+        
+        </div>
     </form>
+    </div>
+    <div class="col-md-4">
+        <div class="card-body">
+        <img class="imageContainer" [src]="imgURL" height="200" *ngIf="imgURL">
+        </div>
     </div>
 </div>
