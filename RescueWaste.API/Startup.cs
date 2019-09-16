@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
@@ -43,15 +44,28 @@ namespace RescueWaste.API
                 .AddEntityFrameworkStores<DataContext>();
             services.AddMvc()
              .AddJsonOptions(
-        options => options.SerializerSettings.ReferenceLoopHandling =            
-        Newtonsoft.Json.ReferenceLoopHandling.Ignore)
+                options => options.SerializerSettings.ReferenceLoopHandling =            
+                Newtonsoft.Json.ReferenceLoopHandling.Ignore)
             .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
             .ConfigureApiBehaviorOptions(options =>{
                 options.SuppressConsumesConstraintForFormFileParameters = true;
                 options.SuppressMapClientErrors = true;
                 options.SuppressUseValidationProblemDetailsForInvalidModelStateResponses = true;
             });
+
+            // Automapper configuaration
+
             services.AddCors();
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new AutoMapperProfiles());
+            });
+
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
+
+            // Cloudinary Settings
+
             services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
         }
 
