@@ -17,6 +17,7 @@ export class AddCouponComponent implements OnInit {
   model: any = {merchantId: -1};
   selected: any;
   file: any;
+  filename: any;
   merchants: any;
   public imagePath;
   imgURL: any;
@@ -27,6 +28,7 @@ export class AddCouponComponent implements OnInit {
 
   ngOnInit() {
     this.getMerchants();
+    this.filename = 'Choose image';
     this.couponForm = new FormGroup({
       name: new FormControl(),
       merchantId: new FormControl(),
@@ -51,6 +53,7 @@ export class AddCouponComponent implements OnInit {
       return;
     }
     this.file = <File>files[0];
+    this.filename = this.file.name;
     var reader = new FileReader();
     this.imagePath = files;
     reader.readAsDataURL(files[0]);
