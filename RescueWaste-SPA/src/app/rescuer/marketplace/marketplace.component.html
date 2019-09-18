@@ -1,3 +1,19 @@
-<p>
-  marketplace works!
-</p>
+<div class="row">
+  <div *ngFor="let promocode of promocodes" class="col-md-4">
+    <div class="card mb-4">
+      <div class="card-img-wrapper">
+        <img class="card-img-top" height="200px" width="200px" src="{{promocode.photoUrl}}">
+      </div>
+      <div class="card-body p-1">
+          <strong>
+            <h6 class="text-center mb-1">{{promocode.merchantName}}</h6>
+          </strong>
+          <h6 class="card-title text-center mb-1">
+            Coupon Code: {{promocode.name}}
+          </h6>
+          <h6 class="text-center">Discount Rate: {{promocode.discount}} %</h6>
+          <p class="card-text text-muted text-center">{{promocode.expireDate}}</p>
+      </div>
+    </div>
+</div>
+</div>
