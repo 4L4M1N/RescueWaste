@@ -34,6 +34,7 @@ export class AddCouponComponent implements OnInit {
       merchantId: new FormControl(),
       expiredDate: new FormControl(),
       file: new FormControl(),
+      discount: new FormControl(),
       areaManagerId: new FormControl(-1)
     });
 
@@ -74,7 +75,10 @@ export class AddCouponComponent implements OnInit {
     formData.append('expiredDate', expiredDate);
     const areaManagerId = this.couponForm.controls['areaManagerId'].value;
     formData.append('areaManagerId', areaManagerId);
-   
+
+    const discount = this.couponForm.controls['discount'].value;
+    formData.append('discount', discount);
+
     // formData.append('merchantname', this.couponForm.controls['profile'].value);
     // formData.append('name', this.couponForm.controls['merchantname'].value);
     // formData.append('expireDate', this.couponForm.controls['expireDate'].value);
