@@ -26,6 +26,7 @@ import { ManagerDashboardComponent } from './manager/manager-dashboard/manager-d
 import { ManagerNavComponent } from './manager/manager-nav/manager-nav.component';
 import { AddCouponComponent } from './manager/add-coupon/add-coupon.component';
 import { FileUploadModule } from 'ng2-file-upload';
+import { PromocodeService } from './services/promocode.service';
 
 
 
@@ -60,6 +61,7 @@ import { FileUploadModule } from 'ng2-file-upload';
    providers: [
       AuthService,
       AuthGuard,
+      PromocodeService,
       ErrorInterceptorProvider,
       AlertifyService,
       Title// ForTitleService
