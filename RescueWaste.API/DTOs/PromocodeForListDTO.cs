@@ -17,8 +17,9 @@ namespace RescueWaste.API.DTOs
         public bool IsActive { get; set; }
 
         public string AreaManagerID { get; set; }
-
+        
         public byte MerchantID { get; set; }
+        public string MerchantName { get; set; }
 
         public string PhotoUrl { get; set; }
     }

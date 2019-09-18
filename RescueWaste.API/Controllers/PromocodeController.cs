@@ -50,13 +50,16 @@ namespace RescueWaste.API.Controllers
 
         public async Task<IActionResult> GetPromocode()
         {
-            var promocodes = await _context.PromoCodes.Include(p =>p.PromocodePhoto).ToListAsync();
+            var promocodes = await _context.PromoCodes
+                        .Include(p =>p.PromocodePhoto)
+                        .Include(p =>p.Merchant)
+                        .ToListAsync();
             var promocodesToReturn = _mapper.Map<IEnumerable<PromocodeForListDTO>>(promocodes);
             return Ok(promocodesToReturn);
             
         }
 
-        [AllowAnonymous]
+
         [HttpGet("merchants")]
         public ActionResult Merchants()
         {
@@ -129,8 +132,8 @@ namespace RescueWaste.API.Controllers
                 Name = promoCode.Name,
                 ExpireDate = DateTime.Now,
                 IsActive = true,
-                MerchantID = promoCode.MerchantID
-
+                MerchantID = promoCode.MerchantID,
+                Discount = promoCode.Discount
             };
             _context.PromoCodes.Add(promocodeToAdd);
             await _context.SaveChangesAsync();

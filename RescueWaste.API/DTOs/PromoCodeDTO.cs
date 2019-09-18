@@ -21,6 +21,7 @@ namespace RescueWaste.API.DTOs
         public IFormFile File { get; set; }
         public string PublicId { get; set; }
         public string AreaManagerID { get; set; }
+        public double Discount { get; set; }
         
     }
 }
