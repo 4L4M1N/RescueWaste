@@ -9,16 +9,15 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using RescueWaste.API.Helpers;
 using CloudinaryDotNet;
-using System.Security.Claims;
 using CloudinaryDotNet.Actions;
-using System.Text;
 using System;
-using Microsoft.AspNetCore.Http;
-using System.Net.Http;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+using AutoMapper;
 
 namespace RescueWaste.API.Controllers
 {
-    
+
     [AllowAnonymous]
     [Route("api/[controller]")]
     [ApiController]
@@ -27,15 +26,18 @@ namespace RescueWaste.API.Controllers
         private readonly DataContext _context;
         private readonly UserManager<AppUser> _userManager;
         private readonly IOptions<CloudinarySettings> _cloudinaryConfig;
+        private readonly IMapper _mapper;
         private Cloudinary _cloudinary;
 
         public PromocodeController(DataContext context, 
                 UserManager<AppUser> userManager, 
-                IOptions<CloudinarySettings> cloudinaryConfig)
+                IOptions<CloudinarySettings> cloudinaryConfig,
+                IMapper mapper)
         {
             _context = context;
             _userManager = userManager;
             _cloudinaryConfig = cloudinaryConfig;
+            _mapper = mapper;
 
             Account acc = new Account(
                 _cloudinaryConfig.Value.CloudName,
@@ -46,7 +48,13 @@ namespace RescueWaste.API.Controllers
             _cloudinary = new Cloudinary(acc);
         }
 
-
+        public async Task<IActionResult> GetPromocode()
+        {
+            var promocodes = await _context.PromoCodes.Include(p =>p.PromocodePhoto).ToListAsync();
+            var promocodesToReturn = _mapper.Map<IEnumerable<PromocodeForListDTO>>(promocodes);
+            return Ok(promocodesToReturn);
+            
+        }
 
         [AllowAnonymous]
         [HttpGet("merchants")]
