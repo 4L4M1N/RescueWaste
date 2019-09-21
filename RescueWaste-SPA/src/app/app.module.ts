@@ -27,6 +27,7 @@ import { ManagerNavComponent } from './manager/manager-nav/manager-nav.component
 import { AddCouponComponent } from './manager/add-coupon/add-coupon.component';
 import { FileUploadModule } from 'ng2-file-upload';
 import { PromocodeService } from './services/promocode.service';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
 
 
 
@@ -45,7 +46,8 @@ import { PromocodeService } from './services/promocode.service';
       ManagerComponent,
       ManagerDashboardComponent,
       ManagerNavComponent,
-      AddCouponComponent
+      AddCouponComponent,
+      AccountSettingsComponent
    ],
    imports: [
       BrowserModule,
@@ -64,7 +66,7 @@ import { PromocodeService } from './services/promocode.service';
       PromocodeService,
       ErrorInterceptorProvider,
       AlertifyService,
-      Title// ForTitleService
+      Title//ForTitleService
    ],
    bootstrap: [
       AppComponent

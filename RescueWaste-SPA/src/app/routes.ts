@@ -8,6 +8,7 @@ import { MarketplaceComponent } from './rescuer/marketplace/marketplace.componen
 import { ManagerComponent } from './manager/manager.component';
 import { ManagerDashboardComponent } from './manager/manager-dashboard/manager-dashboard.component';
 import { AddCouponComponent } from './manager/add-coupon/add-coupon.component';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
 
 export const appRoutes: Routes = [
     { path: '', component: HomeComponent},
@@ -18,16 +19,19 @@ export const appRoutes: Routes = [
         children: [
             { path: 'rescuer', component: RescuerComponent, data: {role: 'Rescuer'}, canActivate: [AuthGuard], children : [
                 {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
-                {path: 'marketplace', component: MarketplaceComponent, canActivate: [AuthGuard]}
+                {path: 'marketplace', component: MarketplaceComponent, canActivate: [AuthGuard]},
+                {path: 'account-settings', component: AccountSettingsComponent, canActivate: [AuthGuard]}
             ]},
             { path: 'manager', component: ManagerComponent, data: {role: 'Manager'}, canActivate: [AuthGuard], children : [
                 {path: 'manager-dashboard', component: ManagerDashboardComponent, canActivate: [AuthGuard]},
-                {path: 'add-coupon', component: AddCouponComponent, canActivate: [AuthGuard]}
+                {path: 'add-coupon', component: AddCouponComponent, canActivate: [AuthGuard]},
+                {path: 'account-settings', component: AccountSettingsComponent, canActivate: [AuthGuard]}
             ]},
         ]
     },
 
     { path: 'register', component: RegisterComponent},
+    {path: 'account-settings', component: AccountSettingsComponent, canActivate: [AuthGuard]},
     // {
     //      path: 'manager', component: ManagerComponent, canActivate: [AuthGuard], data: {role: 'Manager'},
     // },
