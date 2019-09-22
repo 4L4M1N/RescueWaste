@@ -10,7 +10,7 @@ namespace RescueWaste.API.DTOs
 {
     public class PromoCodeDTO
     {
-       
+       //TODO: Required attribute need to add 
         public string  Name { get; set; }
         
         public DateTime ExpireDate { get; set; }
@@ -22,6 +22,7 @@ namespace RescueWaste.API.DTOs
         public string PublicId { get; set; }
         public string AreaManagerID { get; set; }
         public double Discount { get; set; }
+        public int CoinsRequired { get; set; }
         
     }
 }

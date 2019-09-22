@@ -35,6 +35,7 @@ export class AddCouponComponent implements OnInit {
       expiredDate: new FormControl(),
       file: new FormControl(),
       discount: new FormControl(),
+      coinsRequired: new FormControl(),
       areaManagerId: new FormControl(-1)
     });
 
@@ -67,14 +68,21 @@ export class AddCouponComponent implements OnInit {
     this.couponForm.controls['areaManagerId'].setValue(this.authService.decodedToken.nameid);
     const formData = new FormData();
     formData.append('file', this.file);
+
     const merchants = this.couponForm.controls['merchantId'].value;
     formData.append('merchantId', merchants);
+
     const name = this.couponForm.controls['name'].value;
     formData.append('name', name);
+
     const expiredDate = this.couponForm.controls['expiredDate'].value;
     formData.append('expiredDate', expiredDate);
+
     const areaManagerId = this.couponForm.controls['areaManagerId'].value;
     formData.append('areaManagerId', areaManagerId);
+
+    const coinsRequired = this.couponForm.controls['coinsRequired'].value;
+    formData.append('coinsRequired', coinsRequired);
 
     const discount = this.couponForm.controls['discount'].value;
     formData.append('discount', discount);
@@ -89,10 +97,10 @@ export class AddCouponComponent implements OnInit {
     }, error => {
       console.log(error);
     });
-    
-  console.log(merchants);
-  console.log(this.couponForm.controls['name'].value);
-    
+
+    console.log(merchants);
+    console.log(this.couponForm.controls['name'].value);
+
   }
 
 }

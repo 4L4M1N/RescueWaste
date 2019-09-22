@@ -27,6 +27,9 @@ namespace RescueWaste.API.Models
         public byte MerchantID { get; set; }
 
         public PromocodePhoto PromocodePhoto { get; set; }
+        
+        [Required]
+        public int CoinsRequired { get; set; }
  
     }
 }

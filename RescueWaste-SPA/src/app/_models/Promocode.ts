@@ -6,4 +6,5 @@ export interface Promocode {
     isActive: boolean;
     photoUrl: string;
     merchantName: string;
+    coinsRequired: number;
 }

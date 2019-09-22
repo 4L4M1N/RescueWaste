@@ -22,5 +22,6 @@ namespace RescueWaste.API.DTOs
         public string MerchantName { get; set; }
 
         public string PhotoUrl { get; set; }
+        public int CoinsRequired { get; set; }
     }
 }

@@ -133,7 +133,8 @@ namespace RescueWaste.API.Controllers
                 ExpireDate = DateTime.Now,
                 IsActive = true,
                 MerchantID = promoCode.MerchantID,
-                Discount = promoCode.Discount
+                Discount = promoCode.Discount,
+                CoinsRequired = promoCode.CoinsRequired
             };
             _context.PromoCodes.Add(promocodeToAdd);
             await _context.SaveChangesAsync();
