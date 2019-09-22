@@ -9,6 +9,7 @@ import { ManagerComponent } from './manager/manager.component';
 import { ManagerDashboardComponent } from './manager/manager-dashboard/manager-dashboard.component';
 import { AddCouponComponent } from './manager/add-coupon/add-coupon.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { GiveRewardsComponent } from './manager/give-rewards/give-rewards.component';
 
 export const appRoutes: Routes = [
     { path: '', component: HomeComponent},
@@ -25,7 +26,8 @@ export const appRoutes: Routes = [
             { path: 'manager', component: ManagerComponent, data: {role: 'Manager'}, canActivate: [AuthGuard], children : [
                 {path: 'manager-dashboard', component: ManagerDashboardComponent, canActivate: [AuthGuard]},
                 {path: 'add-coupon', component: AddCouponComponent, canActivate: [AuthGuard]},
-                {path: 'account-settings', component: AccountSettingsComponent, canActivate: [AuthGuard]}
+                {path: 'account-settings', component: AccountSettingsComponent, canActivate: [AuthGuard]},
+                {path: 'give-rewards', component: GiveRewardsComponent, canActivate: [AuthGuard]}
             ]},
         ]
     },

@@ -28,9 +28,7 @@ import { AddCouponComponent } from './manager/add-coupon/add-coupon.component';
 import { FileUploadModule } from 'ng2-file-upload';
 import { PromocodeService } from './services/promocode.service';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
-
-
-
+import { GiveRewardsComponent } from './manager/give-rewards/give-rewards.component';
 
 
 @NgModule({
@@ -47,7 +45,8 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
       ManagerDashboardComponent,
       ManagerNavComponent,
       AddCouponComponent,
-      AccountSettingsComponent
+      AccountSettingsComponent,
+      GiveRewardsComponent
    ],
    imports: [
       BrowserModule,
