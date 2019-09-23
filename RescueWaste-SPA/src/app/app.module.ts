@@ -29,6 +29,7 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { PromocodeService } from './services/promocode.service';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { GiveRewardsComponent } from './manager/give-rewards/give-rewards.component';
+import { PromoCodeListResolver } from './_resolvers/promocode-list.resolver';
 
 
 @NgModule({
@@ -65,6 +66,7 @@ import { GiveRewardsComponent } from './manager/give-rewards/give-rewards.compon
       PromocodeService,
       ErrorInterceptorProvider,
       AlertifyService,
+      PromoCodeListResolver,
       Title//ForTitleService
    ],
    bootstrap: [

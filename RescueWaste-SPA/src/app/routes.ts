@@ -10,6 +10,7 @@ import { ManagerDashboardComponent } from './manager/manager-dashboard/manager-d
 import { AddCouponComponent } from './manager/add-coupon/add-coupon.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { GiveRewardsComponent } from './manager/give-rewards/give-rewards.component';
+import { PromoCodeListResolver } from './_resolvers/promocode-list.resolver';
 
 export const appRoutes: Routes = [
     { path: '', component: HomeComponent},
@@ -20,7 +21,8 @@ export const appRoutes: Routes = [
         children: [
             { path: 'rescuer', component: RescuerComponent, data: {role: 'Rescuer'}, canActivate: [AuthGuard], children : [
                 {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
-                {path: 'marketplace', component: MarketplaceComponent, canActivate: [AuthGuard]},
+                // tslint:disable-next-line:max-line-length
+                {path: 'marketplace', component: MarketplaceComponent, resolve: {promocodes: PromoCodeListResolver} ,canActivate: [AuthGuard]},
                 {path: 'account-settings', component: AccountSettingsComponent, canActivate: [AuthGuard]}
             ]},
             { path: 'manager', component: ManagerComponent, data: {role: 'Manager'}, canActivate: [AuthGuard], children : [
