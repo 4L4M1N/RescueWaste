@@ -52,10 +52,11 @@ namespace RescueWaste.API.Controllers
             _cloudinary = new Cloudinary(acc);
         }
 
-        public async Task<IActionResult> GetPromocodes()
+        public async Task<IActionResult> GetPromocodes([FromQuery]PromocodeParams promocodeParams)
         {
-            var promocodes = await _repo.GetPromocodes();
+            var promocodes = await _repo.GetPromocodes(promocodeParams);
             var promocodesToReturn = _mapper.Map<IEnumerable<PromocodeForListDTO>>(promocodes);
+              
             return Ok(promocodesToReturn);
             
         }

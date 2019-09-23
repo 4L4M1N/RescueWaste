@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using RescueWaste.API.Data;
+using RescueWaste.API.Helpers;
 using RescueWaste.API.Models;
 
 namespace RescueWaste.API.Repositories
@@ -33,13 +34,13 @@ namespace RescueWaste.API.Repositories
             return promoCode;
         }
 
-        public async Task<IEnumerable<PromoCode>> GetPromocodes()
+        public async Task<PagingList<PromoCode>> GetPromocodes(PromocodeParams promocodeParams)
         {
-            var promoCodes = await _context.PromoCodes
+            var promoCodes = _context.PromoCodes
                         .Include(p =>p.PromocodePhoto)
-                        .Include(p =>p.Merchant)
-                        .ToListAsync();
-            return promoCodes;
+                        .Include(p =>p.Merchant);
+                        
+            return await PagingList<PromoCode>.CreateAsync(promoCodes, promocodeParams.PageNumber, promocodeParams.PageSize);
         }
 
         public async Task<bool> SaveAll()
