@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
+using RescueWaste.API.Repositories;
 
 namespace RescueWaste.API.Controllers
 {
@@ -28,16 +29,19 @@ namespace RescueWaste.API.Controllers
         private readonly IOptions<CloudinarySettings> _cloudinaryConfig;
         private readonly IMapper _mapper;
         private Cloudinary _cloudinary;
+        private readonly IPromocodeRepository _repo;
 
         public PromocodeController(DataContext context, 
                 UserManager<AppUser> userManager, 
                 IOptions<CloudinarySettings> cloudinaryConfig,
-                IMapper mapper)
+                IMapper mapper,
+                IPromocodeRepository repo)
         {
             _context = context;
             _userManager = userManager;
             _cloudinaryConfig = cloudinaryConfig;
             _mapper = mapper;
+            _repo = repo;
 
             Account acc = new Account(
                 _cloudinaryConfig.Value.CloudName,
@@ -48,12 +52,9 @@ namespace RescueWaste.API.Controllers
             _cloudinary = new Cloudinary(acc);
         }
 
-        public async Task<IActionResult> GetPromocode()
+        public async Task<IActionResult> GetPromocodes()
         {
-            var promocodes = await _context.PromoCodes
-                        .Include(p =>p.PromocodePhoto)
-                        .Include(p =>p.Merchant)
-                        .ToListAsync();
+            var promocodes = await _repo.GetPromocodes();
             var promocodesToReturn = _mapper.Map<IEnumerable<PromocodeForListDTO>>(promocodes);
             return Ok(promocodesToReturn);
             

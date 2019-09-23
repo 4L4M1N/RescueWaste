@@ -19,6 +19,7 @@ using Microsoft.Extensions.Options;
 using RescueWaste.API.Data;
 using RescueWaste.API.Helpers;
 using RescueWaste.API.Models;
+using RescueWaste.API.Repositories;
 
 namespace RescueWaste.API
 {
@@ -63,6 +64,7 @@ namespace RescueWaste.API
 
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
+            services.AddScoped<IPromocodeRepository, PromocodeRepository>();
 
             // Cloudinary Settings
 
