@@ -56,6 +56,8 @@ namespace RescueWaste.API.Controllers
         {
             var promocodes = await _repo.GetPromocodes(promocodeParams);
             var promocodesToReturn = _mapper.Map<IEnumerable<PromocodeForListDTO>>(promocodes);
+            Response.AddPagination(promocodes.CurrentPage, promocodes.PageSize,
+                                    promocodes.TotalCount, promocodes.TotalPages);
               
             return Ok(promocodesToReturn);
             
