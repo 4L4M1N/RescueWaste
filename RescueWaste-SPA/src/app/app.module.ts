@@ -2,7 +2,7 @@ import { BrowserModule, Title } from '@angular/platform-browser'; // For Title S
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BsDropdownModule } from 'ngx-bootstrap';
+import { BsDropdownModule, PaginationModule } from 'ngx-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { RouterModule } from '@angular/router';
@@ -32,6 +32,7 @@ import { GiveRewardsComponent } from './manager/give-rewards/give-rewards.compon
 import { PromoCodeListResolver } from './_resolvers/promocode-list.resolver';
 
 
+
 @NgModule({
    declarations: [
       AppComponent,
@@ -56,6 +57,7 @@ import { PromoCodeListResolver } from './_resolvers/promocode-list.resolver';
       BsDropdownModule.forRoot(),
       BrowserAnimationsModule,
       BsDatepickerModule.forRoot(),
+      PaginationModule.forRoot(),
       RouterModule.forRoot(appRoutes),
       FileUploadModule,
       ReactiveFormsModule

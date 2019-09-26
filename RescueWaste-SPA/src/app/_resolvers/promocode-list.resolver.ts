@@ -8,9 +8,9 @@ import { catchError } from 'rxjs/operators';
 @Injectable()
 export class PromoCodeListResolver implements Resolve<Promocode[]> {
     pageNumber = 1;
-    pageSize = 5;
+    pageSize = 6;
     constructor(private promocodeService: PromocodeService,
-        private router: Router, private alertify: AlertifyService){}
+                private router: Router, private alertify: AlertifyService) {}
 
         resolve(route: ActivatedRouteSnapshot) : Observable<Promocode[]> {
             return this.promocodeService.getPromocodes(this.pageNumber, this.pageSize).pipe (
