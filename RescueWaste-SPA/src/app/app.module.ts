@@ -69,7 +69,7 @@ import { PromoCodeListResolver } from './_resolvers/promocode-list.resolver';
       ErrorInterceptorProvider,
       AlertifyService,
       PromoCodeListResolver,
-      Title//ForTitleService
+      Title// ForTitleService
    ],
    bootstrap: [
       AppComponent

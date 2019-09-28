@@ -20,6 +20,8 @@ using RescueWaste.API.Data;
 using RescueWaste.API.Helpers;
 using RescueWaste.API.Models;
 using RescueWaste.API.Repositories;
+using Microsoft.AspNetCore.Mvc;
+using System.Net.Mime;
 
 namespace RescueWaste.API
 {
@@ -52,8 +54,16 @@ namespace RescueWaste.API
             .ConfigureApiBehaviorOptions(options =>{
                 options.SuppressConsumesConstraintForFormFileParameters = true;
                 options.SuppressMapClientErrors = true;
-                options.SuppressModelStateInvalidFilter = false;
-                options.SuppressInferBindingSourcesForParameters = true;
+                // options.SuppressModelStateInvalidFilter = false;
+                //options.SuppressUseValidationProblemDetailsForInvalidModelStateResponses = true;
+                
+                // For Model Error!
+                options.InvalidModelStateResponseFactory = context =>
+                {
+                    var result = new BadRequestObjectResult(context.ModelState);
+                    result.ContentTypes.Add(MediaTypeNames.Application.Json);
+                    return result;
+                };
             });
 
             // Automapper configuaration

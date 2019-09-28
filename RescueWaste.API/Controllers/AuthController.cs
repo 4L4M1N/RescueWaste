@@ -69,7 +69,7 @@ namespace RescueWaste.API.Controllers
                 return Ok(createdUser);
             }
             //Create User
-            return BadRequest(createdUser.Errors);
+            return BadRequest(ModelState);
         }
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserForLoginDTO userForLoginDTO)
