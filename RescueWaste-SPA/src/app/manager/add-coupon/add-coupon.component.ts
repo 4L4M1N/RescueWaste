@@ -4,7 +4,6 @@ import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { AuthService } from 'src/app/services/auth.service';
 import { PromocodeService } from 'src/app/services/promocode.service';
 import { FormGroup, FormControl } from '@angular/forms';
-import { NgNoValidate } from '@angular/forms/src/directives/ng_no_validate_directive';
 
 @Component({
   selector: 'app-add-coupon',

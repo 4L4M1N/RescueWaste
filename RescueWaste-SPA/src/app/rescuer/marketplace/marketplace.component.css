@@ -24,3 +24,6 @@
     bottom: 0;
     opacity: 1;
 }
+:host /deep/ .page-item.active .page-link {
+    color:#fff;background-color:#1d6ac8;background-image:-moz-linear-gradient(#45b3f3, #1d6ac8);background-image:-webkit-linear-gradient(#45b3f3, #1d6ac8);border-color:#1d6ac8 #1d6ac8 #1a5eb2
+}
