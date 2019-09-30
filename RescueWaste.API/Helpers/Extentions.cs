@@ -24,7 +24,8 @@ namespace RescueWaste.API.Helpers
             response.Headers.Add("Access-Control-Expose-Headers", "Pagination");
 
         }
-        public static bool CheckFileExtention(IFormFile file)
+        // Check Promocode Imagefile extention 
+        public static bool CheckImageFileExtention(IFormFile file)
         {
             string fileName = file.Name;
             string extention = Path.GetExtension(fileName);
