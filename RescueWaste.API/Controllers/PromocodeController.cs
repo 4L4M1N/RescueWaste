@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using RescueWaste.API.Repositories;
+using System.IO;
 
 namespace RescueWaste.API.Controllers
 {
@@ -96,13 +97,14 @@ namespace RescueWaste.API.Controllers
             // {
             //     return Unauthorized();
             // }
-            if(promoCode == null)
-            {
-                return Ok(promoCode);
-            }
             var file = Request.Form.Files[0];
+            // string fileName = file.Name;
+            // string extension = Path.GetExtension(fileName);
+            if(!Extentions.CheckFileExtention(file)) {
+                return BadRequest("File format not supported");
+            }
             var uploadResult = new ImageUploadResult();
-          
+            
             if(file.Length > 0)
             {
                 using (var stream = file.OpenReadStream())
@@ -125,11 +127,6 @@ namespace RescueWaste.API.Controllers
             promoCode.Url = uploadResult.Uri.ToString();
             promoCode.PublicId = uploadResult.PublicId;
 
-             //promoCode.AreaManagerID = "227cb93a-5154-4caa-b93d-a6431dd29e5e";
-            // string one = "1";
-            // promoCode.Name = "ABCC";
-
-            // promoCode.MerchantID = Convert.ToByte(one);
             var promocodeToAdd = new PromoCode 
             {
                 AreaManagerID = promoCode.AreaManagerID,

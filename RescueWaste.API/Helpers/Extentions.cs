@@ -1,3 +1,4 @@
+using System.IO;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -22,6 +23,18 @@ namespace RescueWaste.API.Helpers
             response.Headers.Add("Pagination", JsonConvert.SerializeObject(paginationHeader, camelCaseFormatter));
             response.Headers.Add("Access-Control-Expose-Headers", "Pagination");
 
+        }
+        public static bool CheckFileExtention(IFormFile file)
+        {
+            string fileName = file.Name;
+            string extention = Path.GetExtension(fileName);
+            if(extention != ".png" || extention != ".jpg")
+            {
+                return false;
+            }
+            else {
+                return true;
+            }
         }
     }
 }
