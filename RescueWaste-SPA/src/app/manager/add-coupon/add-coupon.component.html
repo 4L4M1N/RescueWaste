@@ -36,7 +36,7 @@
                 placeholder="Select Date"
                 class="form-control"
                 placement="right"
-                [bsConfig]="datePickerConfig"
+                [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }"
                 bsDatepicker id="expireDate" formControlName="expiredDate" readonly>
         </div>
 
