@@ -49,6 +49,9 @@ export class AddCouponComponent implements OnInit {
       console.log(error);
     });
   }
+
+  // TODO: Check file extention Important
+
   public uploadFile = (files) => {
     if (files.length === 0) {
       return;
