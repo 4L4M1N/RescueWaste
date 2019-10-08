@@ -31,10 +31,10 @@ namespace RescueWaste.API.Helpers
             string extention = Path.GetExtension(fileName);
             if(extention != ".png" || extention != ".jpg")
             {
-                return false;
+                return true;
             }
             else {
-                return true;
+                return false;
             }
         }
     }

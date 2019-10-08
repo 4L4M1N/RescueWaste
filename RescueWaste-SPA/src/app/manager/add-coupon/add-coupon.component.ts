@@ -76,8 +76,8 @@ export class AddCouponComponent implements OnInit {
 
     const name = this.couponForm.controls['name'].value;
     formData.append('name', name);
-
-    const expiredDate = this.couponForm.controls['expiredDate'].value;
+    
+    const expiredDate =  this.couponForm.controls['expiredDate'].value;
     formData.append('expiredDate', expiredDate);
 
     const areaManagerId = this.couponForm.controls['areaManagerId'].value;

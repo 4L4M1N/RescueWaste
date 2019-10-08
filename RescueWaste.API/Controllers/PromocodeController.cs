@@ -100,7 +100,7 @@ namespace RescueWaste.API.Controllers
             var file = Request.Form.Files[0];
             // string fileName = file.Name;
             // string extension = Path.GetExtension(fileName);
-            if(!Extentions.CheckImageFileExtention(file)) {
+            if(Extentions.CheckImageFileExtention(file) == false) {
                 return BadRequest("File format not supported");
             }
             var uploadResult = new ImageUploadResult();
