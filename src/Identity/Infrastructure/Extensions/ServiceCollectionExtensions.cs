@@ -20,8 +20,8 @@ namespace Identity.Infrastructure.Extensions
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
-            // services.AddIdentity<User, Role>()
-            //         .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddIdentity<User, Role>()
+                    .AddEntityFrameworkStores<ApplicationDbContext>();
         }
     }
 }
